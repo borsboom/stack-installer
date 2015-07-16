@@ -1,0 +1,16 @@
+name:                stack-installer
+version:             0.1.0.0
+synopsis:            Generate the installer for the stack tool
+-- description:         
+license:             BSD2
+license-file:        LICENSE
+author:              Christian Conkle
+maintainer:          christian@conkle.org
+category:            Distribution
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable stack-instaler
+  main-is:             Main.hs
+  build-depends:       base, nsis
+  default-language:    Haskell2010
