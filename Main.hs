@@ -13,7 +13,7 @@ main = writeFile "stack-install.nsi" $ nsis $ do
   name "$Name"
   outFile "stack-install.exe"
   installDir "$APPDATA/local/bin"
-  installDirRegKey HKLM "Software/$Name" "Install_Dir"
+  installDirRegKey HKCU "Software/$Name" "Install_Dir"
   requestExecutionLevel User
 
   page Directory
