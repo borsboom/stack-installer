@@ -44,7 +44,7 @@ main = writeFile "stack-install.nsi" $ nsis $ do
 
   -- Uninstallation sections. (Any section prepended with "un." is an
   -- uninstallation option.)
-  section "un.Remove stack" [] $ do
+  section "un.stack" [] $ do
     deleteRegKey HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name"
     deleteRegKey HKCU "Software/$Name"
 
@@ -54,23 +54,19 @@ main = writeFile "stack-install.nsi" $ nsis $ do
 
   -- The description text is not actually added to the uninstaller as of
   -- nsis-0.3
-  section "un.Remove from %PATH%"
-    [ Unselected
-    , Description "Remove $INSTDIR from the user %PATH%. There may be other programs installed in that location."
+  section "un.Install location on %PATH%"
+    [ Description "Remove $INSTDIR from the user %PATH%. There may be other programs installed in that location."
     ] $ do
       setEnvVarRemove HKCU "PATH" "$INSTDIR"
 
-{-
-
--- This section involves deleting a lot of potentially-valuable data. I'm not
--- confident I'd get it right. Ideally stack's own rm/purge command should handle
--- this.
-
-  section "un.Delete compiler installations and cached snapshots"
+  section "un.Compilers installed by stack"
     [ Unselected
-    , Description "Remove compilers that have been installed by stack, downloaded build plans, and cached snapshots"
+    , Description "Remove %LOCALAPPDATA%/Programs/stack, which contains compilers that have been installed by stack."
     ] $ do
-      -- should delete $APPDATA/stack/build-plan,
-      --  $APPDATA/stack/build-plan-cache, $APPDATA/stack/snapshots, and perhaps
-      --  others
--}
+      rmdir [Recursive] "$LOCALAPPDATA/Programs/stack"
+
+  section "un.stack snapshots and configuration"
+    [ Unselected
+    , Description "Remove %APPDATA%/stack, which contains the user-defined global stack.yaml and the snapshot/compilation cache."
+    ] $ do
+      rmdir [Recursive] "$APPDATA/stack"
