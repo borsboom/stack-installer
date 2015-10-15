@@ -1,7 +1,7 @@
 name:                stack-installer
 version:             0.1.0.0
 synopsis:            Generate the installer for the stack tool
--- description:         
+-- description:
 license:             BSD2
 license-file:        LICENSE
 author:              Christian Conkle
@@ -10,7 +10,7 @@ category:            Distribution
 build-type:          Simple
 cabal-version:       >=1.10
 
-executable stack-instaler
+executable build-stack-installer
   main-is:             Main.hs
   build-depends:       base, nsis
   default-language:    Haskell2010

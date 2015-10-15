@@ -8,7 +8,7 @@ import Development.NSIS.Plugins.EnvVarUpdate
 -- to avoid corrupting the user's $PATH.
 
 main = writeFile "stack-install.nsi" $ nsis $ do
-  _ <- constantStr "Name" "stack"
+  _ <- constantStr "Name" "Stack"
 
   name "$Name"
   outFile "stack-install.exe"
@@ -23,7 +23,7 @@ main = writeFile "stack-install.nsi" $ nsis $ do
   unpage Components
   unpage InstFiles
 
-  section "Install stack" [Required] $ do
+  section "Install Stack" [Required] $ do
     setOutPath "$INSTDIR"
     file [] "stack.exe"
 
@@ -61,7 +61,7 @@ main = writeFile "stack-install.nsi" $ nsis $ do
 
   section "un.Compilers installed by stack"
     [ Unselected
-    , Description "Remove %LOCALAPPDATA%/Programs/stack, which contains compilers that have been installed by stack."
+    , Description "Remove %LOCALAPPDATA%/Programs/stack, which contains compilers that have been installed by Stack."
     ] $ do
       rmdir [Recursive] "$LOCALAPPDATA/Programs/stack"
 

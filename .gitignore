@@ -1,5 +1,5 @@
 .stack-work
 .cabal-sandbox
 stack-install.nsi
-stack-install.exe
+stack-install*.exe
 stack.exe
