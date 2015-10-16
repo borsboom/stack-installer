@@ -8,7 +8,7 @@ import Development.NSIS.Plugins.EnvVarUpdate
 -- to avoid corrupting the user's $PATH.
 
 main = writeFile "stack-install.nsi" $ nsis $ do
-  _ <- constantStr "Name" "Stack"
+  _ <- constantStr "Name" "Haskell Stack"
 
   name "$Name"
   outFile "stack-install.exe"
@@ -23,7 +23,7 @@ main = writeFile "stack-install.nsi" $ nsis $ do
   unpage Components
   unpage InstFiles
 
-  section "Install Stack" [Required] $ do
+  section "Install Haskell Stack" [Required] $ do
     setOutPath "$INSTDIR"
     file [] "stack.exe"
 
@@ -32,13 +32,13 @@ main = writeFile "stack-install.nsi" $ nsis $ do
 
     -- Write the uninstall keys for Windows
     writeRegStr HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name" "DisplayName" "$Name"
-    writeRegStr HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name" "UninstallString" "\"$INSTDIR/uninstall.exe\""
+    writeRegStr HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name" "UninstallString" "\"$INSTDIR/uninstall-stack.exe\""
     writeRegDWORD HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name" "NoModify" 1
     writeRegDWORD HKCU "Software/Microsoft/Windows/CurrentVersion/Uninstall/$Name" "NoRepair" 1
     writeUninstaller "uninstall-stack.exe"
 
   section "Add to user %PATH%"
-    [ Description "Add installation directory to user %PATH% to allow running stack in the console."
+    [ Description "Add installation directory to user %PATH% to allow running Stack in the console."
     ] $ do
       setEnvVarPrepend HKCU "PATH" "$INSTDIR"
 
