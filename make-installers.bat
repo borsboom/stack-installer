@@ -6,7 +6,7 @@ stack --install-ghc build
 stack exec build-stack-installer
 @if errorlevel 1 exit /b
 
-copy /y c:\proj\stack\_release\\stack-%STACKVER%-windows-x86_64.exe stack.exe
+copy /y ..\stack\_release\stack-%STACKVER%-windows-x86_64.exe stack.exe
 @if errorlevel 1 exit /b
 "c:\Program Files (x86)\NSIS\Unicode\makensis.exe" -V3 stack-install.nsi
 @if errorlevel 1 exit /b
@@ -16,7 +16,7 @@ ren stack-install.exe stack-%STACKVER%-windows-x86_64-installer.exe
 signtool sign /v /n "FP Complete, Corporation" /t "http://timestamp.verisign.com/scripts/timestamp.dll" stack-%STACKVER%-windows-x86_64-installer.exe
 @if errorlevel 1 exit /b
 
-copy /y c:\proj\stack\_release\\stack-%STACKVER%-windows-i386.exe stack.exe
+copy /y ..\stack\_release\stack-%STACKVER%-windows-i386.exe stack.exe
 @if errorlevel 1 exit /b
 "c:\Program Files (x86)\NSIS\Unicode\makensis.exe" -V3 stack-install.nsi
 @if errorlevel 1 exit /b
