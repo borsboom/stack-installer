@@ -42,8 +42,8 @@ main = writeFile "stack-install.nsi" $ nsis $ do
     ] $ do
       setEnvVarPrepend HKCU "PATH" "$INSTDIR"
       
-  section "Set STACK_ROOT to recommended default"
-    [ Description "Set STACK_ROOT to C:\sr to workaround issues with long paths."
+  section "Set %STACK_ROOT% to recommended default"
+    [ Description "Set %STACK_ROOT% to C:\\sr to workaround issues with long paths."
     ] $ do
       setEnvVar HKCU "STACK_ROOT" "C:\\sr"
 
@@ -64,8 +64,8 @@ main = writeFile "stack-install.nsi" $ nsis $ do
     ] $ do
       setEnvVarRemove HKCU "PATH" "$INSTDIR"
 
-  section "un.Set STACK_ROOT to recommended default"
-    [ Description "Remove setting of STACK_ROOT to C:\sr."
+  section "un.Set %STACK_ROOT% to recommended default"
+    [ Description "Remove setting of %STACK_ROOT% to C:\\sr."
     ] $ do
       deleteEnvVar HKCU "STACK_ROOT"
       
