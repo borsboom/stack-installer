@@ -2,9 +2,7 @@ setlocal
 SET STACKDIR=%1
 SET STACKVER=%2
 
-stack --install-ghc build
-@if errorlevel 1 exit /b
-stack exec build-stack-installer
+stack Main.hs
 @if errorlevel 1 exit /b
 
 copy /y %STACKDIR%\_release\stack-%STACKVER%-windows-x86_64.exe stack.exe

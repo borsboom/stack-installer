@@ -1,3 +1,8 @@
+{- stack script
+    --resolver lts-11.22
+    --install-ghc
+    --package nsis
+-}
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
